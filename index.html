@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aylan</title> <!-- título do jogo -->
+  <title>Aylan</title>
   <style>
     body {
       margin: 0;
@@ -23,6 +23,7 @@
       background: white;
       transform: rotate(-45deg);
       cursor: pointer;
+      transition: opacity 0.3s ease;
     }
     .heart::before,
     .heart::after {
@@ -42,7 +43,7 @@
       inset: 0;
       display: grid;
       place-items: center;
-      color: white; /* texto branco */
+      color: white;
       font-size: 2.2rem;
       font-weight: bold;
       text-align: center;
@@ -52,10 +53,10 @@
     }
 
     body.active .message { opacity: 1; }
+    body.active .heart { opacity: 0; pointer-events: none; } /* coração desaparece */
   </style>
 </head>
 <body>
-  <!-- coração com aria-label para acessibilidade -->
   <div class="heart" id="heart" role="button" tabindex="0" aria-label="Coração branco"></div>
 
   <div class="message">Te adoro, Alinho :) &lt;3</div>
@@ -68,13 +69,6 @@
     heart.addEventListener('click', activate);
 
     // Teclado (Enter ou Espaço)
-    heart.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        activate();
-      }
-    });
-  </script>
-</body>
-</html>
+    heart.addEventListener('keydown', (e) =>
+
 
