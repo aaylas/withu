@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aylan</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #ffffff; /* fundo branco */
+      font-family: Arial, sans-serif;
+    }
+
+    /* Coração vermelho */
+    .heart {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      background: red;
+      transform: rotate(-45deg);
+      cursor: pointer;
+      transition: opacity 250ms ease;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -60px; left: 0; }
+    .heart::after  { top: 0; left: 60px; }
+
+    /* Mensagem em vermelho (inicialmente oculta) */
+    .message {
+      color: red;
+      font-size: 2.2rem;
+      font-weight: bold;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+
+    /* Estado ativo: mostra mensagem e remove coração */
+    body.active .message { opacity: 1; }
+    body.active .heart { display: none; }
+  </style>
+</head>
+<body>
+  <div class="heart" id="heart" role="button" tabindex="0" aria-label="Coração vermelho"></div>
+
+  <div class="message">te adoro, alinho :) &lt;3</div>
+
+  <script>
+    const heart = document.getElementById('heart');
+    const activate = () => document.body.classList.add('active');
+
+    // Clique
+    heart.addEventListener('click', activate);
+
+    // Teclado (Enter ou Espaço)
+    heart.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activate();
+      }
+    });
+  </script>
+</body>
+</html>
+
